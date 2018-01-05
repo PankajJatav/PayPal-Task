@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./Styles/task3.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body ng-app="task3">
+    <div class="container" ng-controller="userLoginController">
+        <div class="row x" id="loggedIn" ng-show="isLoggedIn">
+            <div class="row">
+                <div class="col-sm-8 x">
+                    <h2>Welcome {{loginName}}</h2>
+                </div>
+                <div class="col-sm-4 x">
+                    <h5 class="logout" ng-click="logout()">Log Out</h5>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn btn-warning" ng-click="viewDetails()">View Details</button>
+            </div>
+
+            <form class="viewForm x" name="viewForm" ng-show="viewUserDetails">
+                    <div class="form-group">
+                            <label >Full Name:</label>
+                            <input class="form-control" name="viewFullName" ng-model="viewFullName" required>
+                          </div>
+                    <!-- <div class="form-group">
+                      <label >Email address:</label>
+                      <input type="email" class="form-control" name="viewEmailAddress" ng-model="viewEmailAddress" required>
+                    </div>
+                    <div class="form-group">
+                      <label >Password:</label>
+                      <input type="password" class="form-control" name="viewPassword" ng-model="viewPassword" required>
+                    </div> -->
+                    <button class="btn btn-primary" ng-disabled="viewForm.viewFullName.$pristine ||  viewForm.viewFullName.$invalid || viewForm.viewEmailAddress.$pristine || viewForm.viewEmailAddress.$invalid || viewForm.viewPassword.$pristine || viewForm.viewPassword.$invalid" ng-click="updateUser()" >Submit</button>
+                    <!-- <button class="btn btn-success" ng-click="updateUSer()">Existing User</button> -->
+            </form>
+            
+
+        </div>
+
+        <div class="row x" id="loginPage" ng-hide="isLoggedIn">
+            <div id="registeredUserList" class="x">
+                <h3>Registered Users</h3>
+                <li ng-repeat="user in registeredUsers" ng-hide="userCreated">{{user['FullName']}}</li>
+                <h4 ng-show="userCreated">No Users</h4>
+            </div>
+
+            <form class="registerForm x" name="registerForm" ng-show="hideLogin">
+                    <div class="form-group">
+                            <label >Full Name:</label>
+                            <input class="form-control" name="registerFullName" ng-model="registerFullName" required>
+                          </div>
+                    <div class="form-group">
+                      <label >Email address:</label>
+                      <input type="email" class="form-control" name="registerEmailAddress" ng-model="registerEmailAddress" required>
+                    </div>
+                    <div class="form-group">
+                      <label >Password:</label>
+                      <input type="password" class="form-control" name="registerPassword" ng-model="registerPassword" required>
+                    </div>
+                    <button class="btn btn-primary" ng-disabled="registerForm.registerFullName.$pristine ||  registerForm.registerFullName.$invalid || registerForm.registerEmailAddress.$pristine || registerForm.registerEmailAddress.$invalid || registerForm.registerPassword.$pristine || registerForm.registerPassword.$invalid" ng-click="submitRegister()" >Submit</button>
+                    <button class="btn btn-success" ng-click="register(false)">Existing User</button>
+            </form>
+
+            <form class="loginForm x" name="loginForm" ng-hide="hideLogin">
+                <div class="form-group">
+                  <label for="email">Email address:</label>
+                  <input type="email" class="form-control" name="loginEmailAddress" ng-model="loginEmailAddress" required>
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Password:</label>
+                  <input type="password" class="form-control" name="loginPassword" ng-model="loginPassword" required>
+                </div>
+                <button class="btn btn-primary" ng-disabled="loginForm.loginEmailAddress.$pristine || loginForm.loginEmailAddress.$invalid || loginForm.loginPassword.$pristine || loginForm.loginPassword.$invalid" ng-click="submitLogin()" >Login</button>
+                <button class="btn btn-success" ng-click="register(true)">New User</button>
+            </form>
+
+            <h2 style="color:red" ng-hide="hideError">{{errorMessage}}</h2>
+        </div>
+    </div>
+    <script src="./Controllers/task3.js"></script>
+</body>
+</html>

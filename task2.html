@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hierarchy</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .x{
+            border: 1px solid black;
+        }
+        .person{
+            width: 70px;
+            height: 70px;
+            border: 1px solid black;
+            border-radius: 50%;
+            text-align: center;
+            margin-top:10px;
+            padding-top: 20px;
+            margin-left:20px;
+            list-style: none;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 1s;
+        }
+        .person:hover{  
+            transform: scale(1.2,1.2);
+            opacity: 0.5;
+        }
+        .newLevel{
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body ng-app="task2">
+    <div ng-controller="hierarchyController" class="container">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <div class="person" data-level='1' ng-style="levelColor[0]" ng-click="showHierarchyBelow(this)">{{top}}</div>
+                </div>
+            </div>
+            
+            <div class="row">
+                    <div class="col-sm-12 text-center newLevel">
+                        <li class="person" ng-style="levelColor[1]" ng-hide="level[2]" data-level='2' ng-click="showHierarchyBelow(this)" ng-repeat="value in values[2]">{{value}}</li>
+                    </div>
+            </div>
+
+            <div class="row">
+                    <div class="col-sm-12 text-center newLevel">
+                        <li class="person" ng-style="levelColor[2]" ng-hide="level[3]" data-level='3'  ng-click="showHierarchyBelow(this)" ng-repeat="value in values[3]">{{value}}</li>
+                    </div>
+            </div>
+            
+            <div class="row">
+                    <div class="col-sm-12 text-center newLevel">
+                        <li class="person" ng-style="levelColor[3]" ng-hide="level[4]" data-level='4'  ng-click="showHierarchyBelow(this)" ng-repeat="value in values[4]">{{value}}</li>
+                    </div>
+            </div> 
+            
+            <div class="row text-center" ng-hide="showFinished">
+                <h5>{{finished}}</h5>
+            </div>
+        </div>
+    </div>
+    <script src="./Controllers/task2.js"></script>
+</body>
+</html>

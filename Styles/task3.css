@@ -1,0 +1,18 @@
+#loginPage{
+    margin: 20px;   
+}
+#registeredUserList{
+    margin: 30px;
+}
+.loginForm, .registerForm{
+    margin: 30px;
+    padding: 5%;
+}
+.x{
+    /* border: 1px solid black; */
+}
+
+.logout{
+    color: blueviolet;
+    cursor: pointer;
+}

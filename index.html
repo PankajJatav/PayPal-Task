@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+</head>
+<body ng-app="weatherForecast">
+    <div class="container" ng-controller="weatehrReportController">
+        <div class="row">
+            <ul class="nav nav-tabs col-sm-12"  id="parentId">
+                    <li class="active col-sm-2" ng-repeat="state in states"  ng-click="changeForecast(this)"><a href="#">{{state['state']}}</a></li>
+            </ul>
+        </div>
+        <div>
+            <!-- <img src="{{src}}"> -->
+            <h2>{{state}}</h2>
+            <div  id="data"></div>
+        </div>
+    </div>
+    <script>
+        // require('./Controllers/index.js');
+    </script>
+    
+    <script src="./Controllers/index.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.js"></script> -->
+</body>
+</html>
